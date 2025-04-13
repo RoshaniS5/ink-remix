@@ -12,17 +12,22 @@
     const randEmoji = nn.random(emojis)
 
     if (nn.mouseDown) {
-      const image = nn.create('img')
-          .set({src: 'brushTexture.jpg', draggable: false})
+      const image = nn.create('span')
+          .content(randEmoji)
           .css({
             position: 'absolute',
+            left: nn.mouseX,
+            top: nn.mouseY,
+            fontSize: 10*(nn.mouseX/nn.mouseY)
+            // transition: 'all 2s',
+            // transform: 'scale(2)'
           })
           .addTo('body')
       
-      image.css({
-        left: nn.mouseX - image.width / 2,
-        top: nn.mouseY - image.height / 2,
-      })
+      // image.css({
+      //   left: nn.mouseX - image.width / 2,
+      //   top: nn.mouseY - image.height / 2,
+      // })
     }
   }
   
