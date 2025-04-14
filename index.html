@@ -1,26 +1,146 @@
 <link rel="stylesheet" href="https://generativeart.online/css/drawing-app.css">
+<style>
+  @keyframes pulse {
+    0% {
+      transform: scale(0.5);
+    }
+    100% {
+      transform: scale(2);
+    }
+  }
+</style>
 <script src="https://cdn.jsdelivr.net/gh/netizenorg/netnet-standard-library/build/nn.min.js"></script>
 <script>
   /* global nn */
   
+  let brushSize = 10;
+  let fontColor = 'black';
+  
+  function sizeButtons () {
+    const sizeIncrease = nn.create('span')
+        .content('⊕')
+        .css({
+          position: 'absolute',
+          left: 10,
+          top: 10,
+          fontSize: 30,
+          cursor: 'pointer'
+        })
+        .addTo('body')
+        .on('click', () => emojiSize+=5)
+    const sizeDecrease = nn.create('span')
+        .content('⊝')
+        .css({
+          position: 'absolute',
+          left: 10,
+          top: 40,
+          fontSize: 30,
+          cursor: 'pointer'
+        })
+        .addTo('body')
+        .on('click', () => emojiSize-=5)
+  }
+  
+  function colorButtons () {
+    const redButton = nn.create('span')
+        .content('●')
+        .css({
+          position: 'absolute',
+          left: 15,
+          top: 80,
+          fontSize: 30,
+          color: 'red',
+          cursor: 'pointer'
+        })
+        .addTo('body')
+        .on('click', () => fontColor='red')
+    const orangeButton = nn.create('span')
+        .content('●')
+        .css({
+          position: 'absolute',
+          left: 15,
+          top: 100,
+          fontSize: 30,
+          color: 'orange',
+          cursor: 'pointer'
+        })
+        .addTo('body')
+        .on('click', () => fontColor='orange')
+    const yellowButton = nn.create('span')
+        .content('●')
+        .css({
+          position: 'absolute',
+          left: 15,
+          top: 120,
+          fontSize: 30,
+          color: 'yellow',
+          cursor: 'pointer'
+        })
+        .addTo('body')
+        .on('click', () => fontColor='yellow')
+    const greenButton = nn.create('span')
+        .content('●')
+        .css({
+          position: 'absolute',
+          left: 15,
+          top: 140,
+          fontSize: 30,
+          color: 'green',
+          cursor: 'pointer'
+        })
+        .addTo('body')
+        .on('click', () => fontColor='green')
+    const blueButton = nn.create('span')
+        .content('●')
+        .css({
+          position: 'absolute',
+          left: 15,
+          top: 160,
+          fontSize: 30,
+          color: 'blue',
+          cursor: 'pointer'
+        })
+        .addTo('body')
+        .on('click', () => fontColor='blue')
+    const purpleButton = nn.create('span')
+        .content('●')
+        .css({
+          position: 'absolute',
+          left: 15,
+          top: 180,
+          fontSize: 30,
+          color: 'purple',
+          cursor: 'pointer'
+        })
+        .addTo('body')
+        .on('click', () => fontColor='purple')
+    const blackButton = nn.create('span')
+        .content('●')
+        .css({
+          position: 'absolute',
+          left: 15,
+          top: 200,
+          fontSize: 30,
+          color: 'black',
+          cursor: 'pointer'
+        })
+        .addTo('body')
+        .on('click', () => fontColor='black')
+  }
+  
   function emoji () {
     requestAnimationFrame(emoji)
-    
-    const emojis = [ '😀','😃','😄','😁','😆','😅','🤣','😂','🙂','😉','😊','😇','🥰','😍','🤩','😘','😗','☺️','😚','😙','🥲','😏'
-    ]
-  
-    const randEmoji = nn.random(emojis)
 
-    if (nn.mouseDown) {
-      const image = nn.create('span')
-          .content(randEmoji)
+    if (nn.mouseDown && nn.mouseX > 50) {
+      const emoji = nn.create('span')
+          .content('●')
           .css({
             position: 'absolute',
             left: nn.mouseX,
             top: nn.mouseY,
-            fontSize: 10*(nn.mouseX/nn.mouseY)
-            // transition: 'all 2s',
-            // transform: 'scale(2)'
+            fontSize: brushSize,
+            color: fontColor,
+            animation: '2s infinite pulse'
           })
           .addTo('body')
       
@@ -31,6 +151,8 @@
     }
   }
   
+  nn.on('load', sizeButtons)
+  nn.on('load', colorButtons)
   nn.on('mousemove', emoji)
   
 </script>
