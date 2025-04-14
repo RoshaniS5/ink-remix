@@ -128,8 +128,7 @@
         .on('click', () => fontColor='black')
   }
   
-  function emoji () {
-    requestAnimationFrame(emoji)
+  function draw () {
 
     if (nn.mouseDown && nn.mouseX > 50) {
       const emoji = nn.create('span')
@@ -153,6 +152,6 @@
   
   nn.on('load', sizeButtons)
   nn.on('load', colorButtons)
-  nn.on('mousemove', emoji)
+  nn.on('mousemove', draw)
   
 </script>
