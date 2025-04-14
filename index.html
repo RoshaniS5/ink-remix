@@ -27,7 +27,7 @@
           cursor: 'pointer'
         })
         .addTo('body')
-        .on('click', () => emojiSize+=5)
+        .on('click', () => brushSize+=5)
     const sizeDecrease = nn.create('span')
         .content('⊝')
         .css({
@@ -38,7 +38,7 @@
           cursor: 'pointer'
         })
         .addTo('body')
-        .on('click', () => emojiSize-=5)
+        .on('click', () => brushSize-=5)
   }
   
   function colorButtons () {
