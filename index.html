@@ -18,16 +18,16 @@
   
   function sizeButtons () {
     const sizeIncrease = nn.create('span')
-        .content('⊕')
-        .css({
-          position: 'absolute',
-          left: 10,
-          top: 10,
-          fontSize: 30,
-          cursor: 'pointer'
-        })
-        .addTo('body')
-        .on('click', () => brushSize+=5)
+                          .content('⊕')
+                            .css({
+                          position: 'absolute',
+                          left: 10,
+                          top: 10,
+                          fontSize: 30,
+                          cursor: 'pointer'
+                            })
+                          .addTo('body')
+                .on('click', () => brushSize+=5)
     const sizeDecrease = nn.create('span')
         .content('⊝')
         .css({
@@ -131,7 +131,7 @@
   function draw () {
 
     if (nn.mouseDown && nn.mouseX > 50) {
-      const emoji = nn.create('span')
+      const brush = nn.create('span')
           .content('●')
           .css({
             position: 'absolute',
@@ -142,11 +142,6 @@
             animation: '2s infinite pulse'
           })
           .addTo('body')
-      
-      // image.css({
-      //   left: nn.mouseX - image.width / 2,
-      //   top: nn.mouseY - image.height / 2,
-      // })
     }
   }
   
